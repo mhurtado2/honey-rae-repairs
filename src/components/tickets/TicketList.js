@@ -59,7 +59,7 @@ export const TicketList = () => {
                 setFiltered(openTicketArray)
             }
         else {
-            const myTickets = tickets.filter(ticket => ticket.userId === honeyUserObject.id)
+             const myTickets = tickets.filter(ticket => ticket.userId === honeyUserObject.id)
             setFiltered(myTickets)
         }
 
