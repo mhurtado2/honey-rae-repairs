@@ -16,7 +16,7 @@ export const EmployeeViews = () => {
             }>
                 <Route path="tickets" element={ <TicketContainer/> } />
                 <Route path="employees" element={ <EmployeeList/> } />
-                <Route path="employees/:employeeId" element={ <EmployeeDetails/>} />
+                <Route path="employees/:employeeId" element={ <EmployeeDetails />} />
             </Route>
         </Routes>
     )
