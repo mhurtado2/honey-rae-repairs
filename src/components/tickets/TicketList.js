@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Tickets.css"
 
-export const TicketList = () => {
+export const TicketList = ({ searchTermState }) => {
     const [tickets, setTickets] = useState([])
     const [filteredTickets, setFiltered] = useState([])
     const [emergency, setEmergency] = useState(false)
@@ -11,6 +11,16 @@ export const TicketList = () => {
 
     const localHoneyUser = localStorage.getItem("honey_user")
     const honeyUserObject = JSON.parse(localHoneyUser)
+
+    useEffect(
+        () => {
+        const searchedTickets = tickets.filter(ticket => {
+            return ticket.description.toLowerCase().startsWith(searchTermState.toLowerCase())
+        })
+        setFiltered(searchedTickets)
+    },
+        [ searchTermState ]
+    )
 
     useEffect(
         () => {
@@ -52,30 +62,30 @@ export const TicketList = () => {
 
     useEffect(
         () => {
-            if(openOnly) {
+            if (openOnly) {
                 const openTicketArray = tickets.filter(ticket => {
                     return ticket.userId === honeyUserObject.id && ticket.dateCompleted === ""
                 })
                 setFiltered(openTicketArray)
             }
-        else {
-             const myTickets = tickets.filter(ticket => ticket.userId === honeyUserObject.id)
-            setFiltered(myTickets)
-        }
+            else {
+                const myTickets = tickets.filter(ticket => ticket.userId === honeyUserObject.id)
+                setFiltered(myTickets)
+            }
 
-    }, [ openOnly ])
+        }, [openOnly])
 
     return <>
         {
             honeyUserObject.staff //tenary statement
                 ? <>
-                 <button onClick={() => { setEmergency(true) }}>Emergency Only</button>
-                 <button onClick={() => { setEmergency(false) }}>Show All</button>
-                 </>
+                    <button onClick={() => { setEmergency(true) }}>Emergency Only</button>
+                    <button onClick={() => { setEmergency(false) }}>Show All</button>
+                </>
                 : <>
-                <button onClick={() => navigate("/ticket/create")}>Create Ticket</button>
-                <button onClick={() => updateOpenOnly(true)}>Open Ticket</button>
-                <button onClick={() => updateOpenOnly(false)}>All My Tickets</button>
+                    <button onClick={() => navigate("/ticket/create")}>Create Ticket</button>
+                    <button onClick={() => updateOpenOnly(true)}>Open Ticket</button>
+                    <button onClick={() => updateOpenOnly(false)}>All My Tickets</button>
                 </>
         }
 
