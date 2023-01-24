@@ -6,6 +6,6 @@ export const Customer = ({id, fullName, address, phoneNumber}) => {
         <Link to={`/customers/${id}`}>Name: {fullName}</Link>
     </div>
     <div>Address: {address}</div>
-    <div>Address: {phoneNumber}</div>
+    <div>Phone Number: {phoneNumber}</div>
 </section>
 }
