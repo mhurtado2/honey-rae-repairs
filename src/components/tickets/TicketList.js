@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./Tickets.css"
+
 
 export const TicketList = ({ searchTermState }) => {
     const [tickets, setTickets] = useState([])
@@ -92,13 +93,31 @@ export const TicketList = ({ searchTermState }) => {
         <h2>List of Tickets</h2>
         <article className="tickets">
             {
-                filteredTickets.map((ticket) => {
-                    return <section className="ticket">
+            filteredTickets.map((ticket) => {
+            return  <section className="ticket" key={ticket.id}>
+                <header>
+                <Link to={`/tickets/${ticket.id}`}>Ticket {ticket.id}</Link>
+                </header>
+                    <section>{ticket.description}</section>
+                    <footer>Emergency: {ticket.emergency ? "🧨" : "No"}</footer>
+                            </section> 
+                      })
+                  }
+ 
+        </article>
+        </>
+}
+
+{/* <section className="ticket" key={ticket.id}>
                         <header>{ticket.description}</header>
                         <footer>Emergency: {ticket.emergency ? "Yes" : "No"}</footer>
-                    </section>
-                })
-            }
-        </article>
-    </>
-}
+                    </section> */}
+
+
+                //     <section className="ticket">
+                //     <header>
+                //         <Link to={`/tickets/${ticket.id}`}>Ticket {ticket.id}</Link>
+                //     </header>
+                //     <section>{ticket.description}</section>
+                //     <footer>Emergency: {ticket.emergency ? "🧨" : "No"}</footer>
+                //   <section/>
