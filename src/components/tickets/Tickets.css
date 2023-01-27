@@ -12,9 +12,16 @@
 
 .assigned {
     display: flex;
-    justify-content: space-between;
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px dotted darkmagenta;
-    
+    border-top: 1px dotted darkmagenta;   
+}
+
+.ticket_delete {
+    margin-left: auto;
+    background-color: lightcoral;
+}
+
+.ticket_finish {
+    margin-left: auto;
 }

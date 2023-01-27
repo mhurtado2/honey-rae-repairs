@@ -32,6 +32,23 @@ export const Ticket = ({
     }
   }
 
+  const deleteButton = () => {
+    if (!currentUser.staff) {
+        return <button onClick={() => {
+            fetch(`http://localhost:8088/serviceTickets/${ticketObject.id}`, {
+                method: "DELETE"
+            })
+            .then(() => {
+                getAllTickets()
+            })
+        }}
+        className="ticket_delete">Delete </button>
+    }
+    else {
+        return ""
+    }
+  }
+
 
     //TODO: Function that determines if the current user can close the ticket
     const closeTicket = () => {
@@ -105,7 +122,14 @@ export const Ticket = ({
           : buttonOrNoButton()
         }
         {
+            //made this ternanry here cause I was seeing "finish btn" as a customer 
+            currentUser.staff ?
             canClose()
+            :
+            ""
+        }
+        {
+            deleteButton()
         }
       </footer>
     </section>
