@@ -9,3 +9,12 @@
     padding: .7rem;
     margin: 0.5rem 0;
 }
+
+.assigned {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dotted darkmagenta;
+    
+}
